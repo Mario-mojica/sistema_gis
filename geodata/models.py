@@ -26,17 +26,6 @@ class Municipios(models.Model):
         managed = False
         db_table = 'municipios'
 
-
-class Puntos(models.Model):
-    id = models.IntegerField(primary_key=True)
-    the_geom = models.MultiPointField(srid=4326, blank=True, null=True)
-    id_0 = models.BigIntegerField(db_column='ID', blank=True, null=True)  # Field name made lowercase. Field renamed because of name conflict.
-    oid = models.IntegerField(db_column='OID', blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'puntos'
-
 class Marginacion(models.Model):
     id = models.IntegerField(primary_key=True)
     the_geom = models.MultiPolygonField(srid=6372, blank=True, null=True)
@@ -75,3 +64,65 @@ class Marginacion(models.Model):
     class Meta:
         managed = False
         db_table = 'marginacion'
+
+
+class Ayudantias(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    the_geom = models.PointField(srid=6372, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'ayudantias'
+
+class Hospitales(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    the_geom = models.PointField(srid=6372, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'hospitales'
+
+
+class Semaforos(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    the_geom = models.PointField(srid=6372, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'semaforos'
+
+
+class TiraderoMunicipal(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    the_geom = models.MultiPolygonField(srid=6372, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tiradero_municipal'
+
+
+class Vialidades(models.Model):
+    id = models.IntegerField(primary_key=True)
+    the_geon = models.MultiLineStringField(srid=6372, blank=True, null=True)
+    identifica = models.IntegerField(db_column='IDENTIFICA', blank=True, null=True)  # Field name made lowercase.
+    cvevial = models.CharField(db_column='CVEVIAL', max_length=5, blank=True, null=True)  # Field name made lowercase.
+    tipovial = models.CharField(db_column='TIPOVIAL', max_length=15, blank=True, null=True)  # Field name made lowercase.
+    nomvial = models.CharField(db_column='NOMVIAL', max_length=110, blank=True, null=True)  # Field name made lowercase.
+    sentido = models.CharField(db_column='SENTIDO', max_length=15, blank=True, null=True)  # Field name made lowercase.
+    dist_mts = models.FloatField(db_column='DIST MTS', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    layer = models.CharField(max_length=254, blank=True, null=True)
+    path = models.CharField(max_length=254, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'vialidades'
+
+class Puntos(models.Model):
+    id = models.IntegerField(primary_key=True)
+    the_geom = models.MultiPointField(blank=True, null=True)
+    id_0 = models.BigIntegerField(db_column='ID', blank=True, null=True)  # Field name made lowercase. Field renamed because of name conflict.
+    oid = models.IntegerField(db_column='OID', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'puntos'
